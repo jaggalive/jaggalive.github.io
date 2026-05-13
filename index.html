@@ -26,34 +26,18 @@ body{
   position:relative;
 }
 
-/* GRID */
+/* GRID BACKGROUND */
 
 .grid{
   position:absolute;
   inset:0;
   background-image:
-  linear-gradient(rgba(255,120,0,0.08) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,120,0,0.08) 1px, transparent 1px);
+  linear-gradient(rgba(255,0,0,0.08) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,0,0,0.08) 1px, transparent 1px);
   background-size:60px 60px;
-  z-index:1;
 }
 
-/* FACE SVG BACKGROUND */
-
-.face-bg{
-  position:absolute;
-  inset:0;
-  z-index:0;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.face-bg svg{
-  width:100%;
-  height:100%;
-}
-
-/* CONTENT */
+/* MAIN CONTENT */
 
 .container{
   position:relative;
@@ -66,7 +50,7 @@ body{
   width:130px;
   margin-bottom:30px;
   animation:pulse 1.5s infinite;
-  filter:drop-shadow(0 0 15px rgba(255,120,0,0.5));
+  filter:drop-shadow(0 0 15px rgba(255,0,0,0.5));
 }
 
 h1{
@@ -77,7 +61,7 @@ h1{
 }
 
 .sub{
-  color:#aaa;
+  color:#777;
   letter-spacing:5px;
   margin-bottom:40px;
   font-size:14px;
@@ -86,24 +70,23 @@ h1{
 .tap{
   display:inline-block;
   padding:14px 30px;
-  border:1px solid rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
   border-radius:12px;
-  color:#ff9800;
+  color:#ff2d2d;
   text-decoration:none;
   font-size:18px;
   transition:0.3s;
-  background:rgba(255,255,255,0.04);
-  backdrop-filter:blur(8px);
+  background:rgba(255,255,255,0.03);
 }
 
 .tap:hover{
-  background:#ff9800;
-  color:#000;
+  background:#ff2d2d;
+  color:#fff;
 }
 
 .note{
   margin-top:25px;
-  color:#777;
+  color:#666;
   font-size:13px;
 }
 
@@ -118,127 +101,7 @@ h1{
 
 <body>
 
-<!-- FACE SVG -->
-
-<div class="face-bg">
-
-<svg
-viewBox="0 0 800 1200"
-xmlns="http://www.w3.org/2000/svg"
-preserveAspectRatio="xMidYMid slice"
->
-
-<defs>
-
-<filter id="glow">
-  <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
-  <feMerge>
-    <feMergeNode in="coloredBlur"/>
-    <feMergeNode in="SourceGraphic"/>
-  </feMerge>
-</filter>
-
-<linearGradient id="bgFade" x1="0" y1="0" x2="0" y2="1">
-  <stop offset="0%" stop-color="#ffb347"/>
-  <stop offset="100%" stop-color="#ff6a00"/>
-</linearGradient>
-
-</defs>
-
-<g opacity="0.20">
-
-<!-- HAIR -->
-<path
-d="
-M210 240
-Q250 80 400 90
-Q560 90 600 240
-Q590 180 540 150
-Q500 120 430 110
-Q340 100 280 140
-Q220 180 210 240
-"
-fill="#ff9800"
-/>
-
-<!-- FACE -->
-<path
-d="
-M260 260
-Q260 170 400 170
-Q540 170 540 260
-L540 500
-Q530 700 400 760
-Q270 700 260 500
-Z
-"
-fill="url(#bgFade)"
-filter="url(#glow)"
-/>
-
-<!-- BEARD -->
-<path
-d="
-M290 520
-Q330 620 400 650
-Q470 620 510 520
-Q470 720 400 760
-Q330 720 290 520
-"
-fill="#111"
-/>
-
-<!-- EYES -->
-<ellipse cx="340" cy="360" rx="28" ry="12" fill="#111"/>
-<ellipse cx="460" cy="360" rx="28" ry="12" fill="#111"/>
-
-<!-- NOSE -->
-<path
-d="
-M390 390
-Q400 450 410 390
-"
-stroke="#111"
-stroke-width="8"
-stroke-linecap="round"
-fill="none"
-/>
-
-<!-- MUSTACHE -->
-<path
-d="
-M340 500
-Q400 470 460 500
-"
-stroke="#111"
-stroke-width="14"
-stroke-linecap="round"
-fill="none"
-/>
-
-<!-- MOUTH -->
-<path
-d="
-M360 560
-Q400 585 440 560
-"
-stroke="#111"
-stroke-width="10"
-stroke-linecap="round"
-fill="none"
-/>
-
-</g>
-
-</svg>
-
-</div>
-
-<!-- GRID -->
-
 <div class="grid"></div>
-
-<!-- MAIN CONTENT -->
 
 <div class="container">
 
@@ -271,7 +134,7 @@ If YouTube doesn't open automatically, tap the button above.
 <script>
 
 /* =========================================
-   CHANGE ONLY THIS LINK
+   CHANGE ONLY THIS LINK WHEN NEEDED
 ========================================= */
 
 const CURRENT_LINK =
@@ -292,19 +155,21 @@ document.getElementById("openButton").href = intentLink;
 
 function openYouTube() {
 
-  // Open YouTube app first
+  // Try opening YouTube app first
   window.location.href = intentLink;
 
-  // Fallback
+  // Fallback to browser
   setTimeout(() => {
     window.location.href = CURRENT_LINK;
   }, 1800);
 
 }
 
-window.onload = () => {
-  openYouTube();
-};
+/* BETTER MOBILE LOAD SYSTEM */
+
+window.addEventListener("load", () => {
+  setTimeout(openYouTube, 500);
+});
 
 </script>
 
