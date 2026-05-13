@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Jagga Live</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#000;
+      color:white;
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+    }
+
+    .grid{
+      position:absolute;
+      inset:0;
+      background-image:
+      linear-gradient(rgba(255,0,0,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,0,0,0.08) 1px, transparent 1px);
+      background-size:60px 60px;
+    }
+
+    .container{
+      text-align:center;
+      z-index:2;
+      padding:20px;
+    }
+
+    .logo{
+      width:130px;
+      margin-bottom:30px;
+      animation:pulse 1.5s infinite;
+      filter:drop-shadow(0 0 15px rgba(255,0,0,0.5));
+    }
+
+    h1{
+      font-size:52px;
+      letter-spacing:4px;
+      margin-bottom:15px;
+      font-weight:900;
+    }
+
+    .sub{
+      color:#777;
+      letter-spacing:5px;
+      margin-bottom:40px;
+      font-size:14px;
+    }
+
+    .tap{
+      color:#ff2d2d;
+      text-decoration:none;
+      font-size:20px;
+      transition:0.3s;
+    }
+
+    .tap:hover{
+      color:white;
+    }
+
+    @keyframes pulse{
+      0%{
+        transform:scale(1);
+      }
+      50%{
+        transform:scale(1.08);
+      }
+      100%{
+        transform:scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+
+<div class="container">
+
+  <img
+    class="logo"
+    src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
+    alt="YouTube"
+  >
+
+  <h1>OPENING YOUTUBE</h1>
+
+  <div class="sub">
+    LAUNCHING JAGGA LIVE...
+  </div>
+
+  <a
+    class="tap"
+    href="https://youtube.com/@jagga-jd?si=TIJDlIox72w0UFbz"
+  >
+    Tap Here
+  </a>
+
+</div>
+
+<script>
+
+const youtubeLink = "https://youtube.com/@jagga-jd?si=TIJDlIox72w0UFbz";
+
+window.onload = () => {
+
+  window.location.href = youtubeLink;
+
+  setTimeout(() => {
+    window.location.href = youtubeLink;
+  }, 1200);
+
+};
+
+</script>
+
+</body>
+</html>
